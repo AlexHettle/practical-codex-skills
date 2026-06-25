@@ -1,0 +1,4 @@
+interface:
+  display_name: "Improve Testing"
+  short_description: "Improve existing tests with quick wins"
+  default_prompt: "Use $improve-testing to find and implement a small quality improvement in this project's existing tests."

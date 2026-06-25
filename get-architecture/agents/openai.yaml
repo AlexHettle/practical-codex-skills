@@ -1,0 +1,4 @@
+interface:
+  display_name: "Get Architecture"
+  short_description: "Explain a repository architecture"
+  default_prompt: "Use $get-architecture to inspect this repository and produce an architecture report."

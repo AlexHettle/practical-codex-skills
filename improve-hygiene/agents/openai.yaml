@@ -1,0 +1,4 @@
+interface:
+  display_name: "Improve Hygiene"
+  short_description: "Fix small codebase hygiene issues"
+  default_prompt: "Use $improve-hygiene to find and fix a quick codebase hygiene win."

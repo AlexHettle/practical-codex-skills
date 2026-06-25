@@ -1,0 +1,4 @@
+interface:
+  display_name: "Increase Testing Coverage"
+  short_description: "Find quick-win test coverage improvements"
+  default_prompt: "Use $increase-testing-coverage to find and implement a quick-win testing coverage improvement."
