@@ -1,0 +1,4 @@
+interface:
+  display_name: "Accessibility Report"
+  short_description: "Generate evidence-based accessibility audit reports"
+  default_prompt: "Use $accessibility-report to audit this project and produce an evidence-based accessibility report."

@@ -1,6 +1,6 @@
 # Practical Codex Skills
 
-A growing collection of practical Codex skills for repository analysis, codebase hygiene, and test improvement.
+A growing collection of practical Codex skills for repository analysis, accessibility auditing, codebase hygiene, and test improvement.
 
 These skills are designed to be small, focused, and easy to drop into a Codex setup. I will keep adding more skills over time.
 
@@ -8,6 +8,7 @@ These skills are designed to be small, focused, and easy to drop into a Codex se
 
 | Skill | Use it when you want Codex to... | Best for |
 | --- | --- | --- |
+| [`accessibility-report`](./accessibility-report/SKILL.md) | Audit a project and produce an evidence-based accessibility report. | WCAG-focused accessibility reviews, keyboard and screen reader risk assessment, semantic HTML/ARIA checks, and remediation planning. |
 | [`get-architecture`](./get-architecture/SKILL.md) | Inspect a repository and produce a polished architecture report. | Onboarding to unfamiliar codebases, mapping entrypoints, understanding data flow, and explaining build/test/deployment structure. |
 | [`improve-hygiene`](./improve-hygiene/SKILL.md) | Find and implement one low-risk codebase hygiene improvement. | Removing stale or confusing maintenance surface such as dead code, unused dependencies, obsolete docs, or misleading comments. |
 | [`improve-testing`](./improve-testing/SKILL.md) | Improve the quality of existing tests. | Strengthening weak assertions, reducing brittleness, clarifying fixtures, improving async cleanup, and making existing tests more meaningful. |
@@ -21,6 +22,7 @@ If you already use Codex, the easiest option is to ask Codex to install the skil
 
 ```text
 Use $skill-installer to install skills from AlexHettle/practical-codex-skills:
+accessibility-report
 get-architecture
 improve-hygiene
 improve-testing
@@ -38,14 +40,14 @@ Install all skills on macOS/Linux:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R get-architecture improve-hygiene improve-testing increase-testing-coverage ~/.codex/skills/
+cp -R accessibility-report get-architecture improve-hygiene improve-testing increase-testing-coverage ~/.codex/skills/
 ```
 
 Install all skills on Windows PowerShell:
 
 ```powershell
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
-Copy-Item -Recurse -Force .\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage "$env:USERPROFILE\.codex\skills\"
+Copy-Item -Recurse -Force .\accessibility-report,.\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage "$env:USERPROFILE\.codex\skills\"
 ```
 
 Install only one skill:
@@ -63,6 +65,7 @@ You can ask Codex naturally, or invoke a skill directly by name.
 Examples:
 
 ```text
+Use $accessibility-report to audit this project for accessibility issues.
 Use $get-architecture to explain this repository.
 Use $improve-hygiene to find and fix a quick codebase hygiene win.
 Use $improve-testing to improve one existing test in this project.
@@ -70,6 +73,12 @@ Use $increase-testing-coverage to add a meaningful coverage improvement.
 ```
 
 ## Skill Details
+
+### accessibility-report
+
+`accessibility-report` is a read-only audit skill for producing detailed accessibility reports. It guides Codex to inspect project structure, accessibility tooling, source patterns, and runtime evidence when available, then organize findings by severity, user impact, WCAG references, evidence, and remediation guidance.
+
+Use it when you need a project-specific accessibility review, WCAG-oriented report, keyboard and screen reader risk assessment, or prioritized accessibility remediation plan.
 
 ### get-architecture
 
@@ -104,6 +113,10 @@ Each skill lives in its own top-level folder:
 +-- README.md
 +-- LICENSE
 +-- .gitignore
++-- accessibility-report/
+|   +-- SKILL.md
+|   +-- agents/
+|       +-- openai.yaml
 +-- get-architecture/
 |   +-- SKILL.md
 |   +-- agents/
@@ -136,13 +149,13 @@ To update your installed copy after pulling changes from GitHub, copy the change
 macOS/Linux:
 
 ```bash
-cp -R get-architecture improve-hygiene improve-testing increase-testing-coverage ~/.codex/skills/
+cp -R accessibility-report get-architecture improve-hygiene improve-testing increase-testing-coverage ~/.codex/skills/
 ```
 
 Windows PowerShell:
 
 ```powershell
-Copy-Item -Recurse -Force .\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage "$env:USERPROFILE\.codex\skills\"
+Copy-Item -Recurse -Force .\accessibility-report,.\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage "$env:USERPROFILE\.codex\skills\"
 ```
 
 Restart Codex after updating so Codex sees the latest skill metadata.
