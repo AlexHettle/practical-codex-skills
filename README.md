@@ -1,6 +1,6 @@
 # Practical Codex Skills
 
-A growing collection of practical Codex skills for repository analysis, accessibility auditing, codebase hygiene, and test improvement.
+A growing collection of practical Codex skills for repository analysis, accessibility auditing, codebase hygiene, leak detection, and test improvement.
 
 These skills are designed to be small, focused, and easy to drop into a Codex setup. I will keep adding more skills over time.
 
@@ -13,6 +13,7 @@ These skills are designed to be small, focused, and easy to drop into a Codex se
 | [`improve-hygiene`](./improve-hygiene/SKILL.md) | Find and implement one low-risk codebase hygiene improvement. | Removing stale or confusing maintenance surface such as dead code, unused dependencies, obsolete docs, or misleading comments. |
 | [`improve-testing`](./improve-testing/SKILL.md) | Improve the quality of existing tests. | Strengthening weak assertions, reducing brittleness, clarifying fixtures, improving async cleanup, and making existing tests more meaningful. |
 | [`increase-testing-coverage`](./increase-testing-coverage/SKILL.md) | Add a focused test coverage improvement. | Covering meaningful untested behavior, edge cases, public helpers, branches, regressions, or small integration paths. |
+| [`leak-search`](./leak-search/SKILL.md) | Scan a project tree for secrets and sensitive values before they are committed or shared. | Finding API keys, private keys, credentials, unsafe env files, gitignore gaps, and other tracked or unignored leaks. |
 
 ## Quick Start
 
@@ -27,6 +28,7 @@ get-architecture
 improve-hygiene
 improve-testing
 increase-testing-coverage
+leak-search
 ```
 
 You can also install them manually by copying the folders from a cloned or downloaded copy of this repo.
@@ -40,14 +42,14 @@ Install all skills on macOS/Linux:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R accessibility-report get-architecture improve-hygiene improve-testing increase-testing-coverage ~/.codex/skills/
+cp -R accessibility-report get-architecture improve-hygiene improve-testing increase-testing-coverage leak-search ~/.codex/skills/
 ```
 
 Install all skills on Windows PowerShell:
 
 ```powershell
 New-Item -ItemType Directory -Force "$env:USERPROFILE\.codex\skills"
-Copy-Item -Recurse -Force .\accessibility-report,.\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage "$env:USERPROFILE\.codex\skills\"
+Copy-Item -Recurse -Force .\accessibility-report,.\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage,.\leak-search "$env:USERPROFILE\.codex\skills\"
 ```
 
 Install only one skill:
@@ -70,6 +72,7 @@ Use $get-architecture to explain this repository.
 Use $improve-hygiene to find and fix a quick codebase hygiene win.
 Use $improve-testing to improve one existing test in this project.
 Use $increase-testing-coverage to add a meaningful coverage improvement.
+Use $leak-search to scan this repository for secrets before I commit.
 ```
 
 ## Skill Details
@@ -104,6 +107,14 @@ Use it when tests exist but feel weak, noisy, hard to maintain, or too tied to i
 
 Use it when you want more behavior protected by tests, not just a higher number.
 
+### leak-search
+
+`leak-search` scans tracked and unignored project files for secrets, credentials, private keys, unsafe environment files, and other sensitive values that should not be committed or shared. It guides Codex to redact evidence, distinguish likely placeholders from real leaks, and recommend concrete remediation steps.
+
+Reports should include only redacted evidence, not complete secret values.
+
+Use it before committing, publishing, sharing a repository, or handing off code that may contain local credentials or generated secret-bearing files.
+
 ## Repository Structure
 
 Each skill lives in its own top-level folder:
@@ -130,6 +141,10 @@ Each skill lives in its own top-level folder:
 |   +-- agents/
 |       +-- openai.yaml
 +-- increase-testing-coverage/
+|   +-- SKILL.md
+|   +-- agents/
+|       +-- openai.yaml
++-- leak-search/
     +-- SKILL.md
     +-- agents/
         +-- openai.yaml
@@ -149,13 +164,13 @@ To update your installed copy after pulling changes from GitHub, copy the change
 macOS/Linux:
 
 ```bash
-cp -R accessibility-report get-architecture improve-hygiene improve-testing increase-testing-coverage ~/.codex/skills/
+cp -R accessibility-report get-architecture improve-hygiene improve-testing increase-testing-coverage leak-search ~/.codex/skills/
 ```
 
 Windows PowerShell:
 
 ```powershell
-Copy-Item -Recurse -Force .\accessibility-report,.\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage "$env:USERPROFILE\.codex\skills\"
+Copy-Item -Recurse -Force .\accessibility-report,.\get-architecture,.\improve-hygiene,.\improve-testing,.\increase-testing-coverage,.\leak-search "$env:USERPROFILE\.codex\skills\"
 ```
 
 Restart Codex after updating so Codex sees the latest skill metadata.

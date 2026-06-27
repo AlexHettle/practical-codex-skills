@@ -1,0 +1,4 @@
+interface:
+  display_name: "Leak Search"
+  short_description: "Scan repos for committed secrets and leaks"
+  default_prompt: "Use $leak-search to scan this repository for secrets before I commit."
